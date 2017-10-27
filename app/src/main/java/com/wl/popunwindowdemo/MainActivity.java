@@ -13,11 +13,13 @@ import android.widget.Button;
 import android.widget.PopupWindow;
 import android.widget.Toast;
 
+import com.wl.popunwindowdemo.fragment.CustomDialogFragment;
+
 /**
  * # 1、修复返回监听时报异常；
  *   2、enter中的动画效果为：从中间向外扩展
  */
-public class MainActivity extends AppCompatActivity implements View.OnClickListener{
+public class MainActivity extends AppCompatActivity implements View.OnClickListener,CustomDialogFragment.CustomDialogFragmentInterface{
 
     private Button btnShowWindow,btnHideWindow,btnChooseOne,btnChooseTwo;
     private PopupWindow mPopupWindow;
@@ -80,7 +82,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mPopupWindow.setOutsideTouchable(true);
         mPopupWindow.setBackgroundDrawable(new ColorDrawable());
         //* setAnimation
-        mPopupWindow.setAnimationStyle(R.style.popAnimation);
+//        mPopupWindow.setAnimationStyle(R.style.popAnimation);
+        mPopupWindow.setAnimationStyle(R.style.popAnimOne);
         mPopupWindow.showAtLocation(view, Gravity.BOTTOM,wide,0);
 
 
@@ -120,5 +123,23 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
         return super.onKeyDown(keyCode, event);
 
+    }
+
+    private CustomDialogFragment customDialogFragment;
+    public void clkOption(View view) {
+        switch (view.getId()){
+            case R.id.showdialogfragment:
+                //TODO 使用  DialogFragment
+                if (customDialogFragment == null){
+                    customDialogFragment = new CustomDialogFragment();
+                }
+                customDialogFragment.show(getFragmentManager(),"");
+                break;
+        }
+    }
+
+    @Override
+    public void setResult(String result) {
+        Toast.makeText(MainActivity.this,result,Toast.LENGTH_SHORT).show();
     }
 }

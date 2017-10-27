@@ -21,4 +21,12 @@
         android:text="隐藏popupwindow"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
+    <Button
+        android:id="@+id/showdialogfragment"
+        android:text="showdialogfragment"
+        android:textAllCaps="false"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="clkOption"
+        />
 </LinearLayout>
